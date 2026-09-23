@@ -26,6 +26,11 @@ class Cifrador(private val alias: String = "sesion") {
 
     private val keyStore = KeyStore.getInstance("AndroidKeyStore").apply { load(null) }
 
+    private companion object {
+        const val TRANSFORMACION = "AES/GCM/NoPadding"
+        const val TAMANO_IV = 12
+    }
+
     /** La llave se crea una sola vez, la primera vez que hace falta. */
     private fun llave(): SecretKey = synchronized(this) {
         (keyStore.getEntry(alias, null) as? KeyStore.SecretKeyEntry)?.secretKey?.let { return it }
@@ -52,28 +57,17 @@ class Cifrador(private val alias: String = "sesion") {
         return Base64.encodeToString(cipher.iv + cifrado, Base64.NO_WRAP)
     }
 
-    /**
-     * El camino inverso. Devuelve null si no se puede: el texto no era nuestro,
-     * fue alterado, o la llave ya no es la misma (se restauró un respaldo en
-     * otro teléfono, por ejemplo). En todos esos casos la respuesta correcta es
-     * "no hay sesión", no tronar.
-     */
+    /** base64 de (iv + cifrado) → texto. `null` si no se puede descifrar (llave distinta, datos corruptos). */
     fun descifrar(base64: String): String? = try {
         val bytes = Base64.decode(base64, Base64.NO_WRAP)
-        val iv = bytes.copyOfRange(0, IV_BYTES)
-        val cifrado = bytes.copyOfRange(IV_BYTES, bytes.size)
+        val iv = bytes.copyOfRange(0, TAMANO_IV)
+        val cifrado = bytes.copyOfRange(TAMANO_IV, bytes.size)
         val cipher = Cipher.getInstance(TRANSFORMACION)
-        cipher.init(Cipher.DECRYPT_MODE, llave(), GCMParameterSpec(TAG_BITS, iv))
+        cipher.init(Cipher.DECRYPT_MODE, llave(), GCMParameterSpec(128, iv))
         String(cipher.doFinal(cifrado), Charsets.UTF_8)
     } catch (e: GeneralSecurityException) {
         null
     } catch (e: IllegalArgumentException) {
         null
-    }
-
-    private companion object {
-        const val TRANSFORMACION = "AES/GCM/NoPadding"
-        const val IV_BYTES = 12
-        const val TAG_BITS = 128
     }
 }
