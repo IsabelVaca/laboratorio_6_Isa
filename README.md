@@ -13,4 +13,8 @@ https://drive.google.com/file/d/1QtIbIhNkY9KgS_A8FLEnzGPj-LIBg3Xy/view?usp=shari
 
 # Bitácora en docs/bitacora.md
 
+# IA
+
+formato de la bitacora hecho con claude
+
 
