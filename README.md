@@ -7,38 +7,10 @@ capa de red y los DTO ya están escritos. Le falta exactamente el tema de la
 práctica: **la sesión**. Toca *Entrar* y no pasa nada — todavía no hay quién
 reciba las credenciales, ni dónde guardar los tokens, ni quién los renueve.
 
-## Cómo empezar
+## Video
 
-1. Clona el repositorio y ábrelo en Android Studio.
-2. Espera a que Gradle sincronice y corre la app: debes ver la pantalla de login.
-3. Abre https://startdroid.com/consola.html y regístrate desde el navegador.
-   Es la Parte 0 de la guía, y va antes de escribir código.
-4. Sigue la guía: https://startdroid.com/practicas/avisos.html
+https://drive.google.com/file/d/1QtIbIhNkY9KgS_A8FLEnzGPj-LIBg3Xy/view?usp=sharing
 
-## Cómo trabajar
+# Bitácora en docs/bitacora.md
 
-Haz un commit en cada checkpoint de la guía:
 
-    git add -A ; git commit -m "checkpoint a2"
-
-Si algo se rompe sin remedio, `git restore .` te regresa al último checkpoint bueno.
-
-Los experimentos que rompen el código a propósito van en una rama:
-
-    git switch -c experimento-c2     # antes de romper nada
-    git switch main                  # el código bueno vuelve solo
-
-## Lo que nunca va en este repositorio
-
-Tu contraseña, tus tokens, y el código de profesor. Ninguno de los tres se
-escribe en el código: la contraseña se teclea, los tokens los guarda la app
-cifrados en el teléfono, y el código se da en clase.
-
-## Uso de IA
-
-Todo commit con código generado por IA debe declararlo con un trailer
-`Co-Authored-By`. Ver la política completa en la guía.
-
-## Entrega
-
-Ver la rúbrica en la guía.
