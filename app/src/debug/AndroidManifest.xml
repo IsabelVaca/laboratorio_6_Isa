@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Desde Android 16 (Local Network Protections), alcanzar una direccion de la red
+         local -como 10.0.2.2, que es tu computadora vista desde el emulador- exige este
+         permiso. Sin el, el trafico se descarta en silencio y OkHttp reporta
+         SocketTimeoutException, como si el servidor no existiera.
+         Va solo en debug: el APK de release habla HTTPS con el servidor desplegado. -->
+    <uses-permission android:name="android.permission.ACCESS_LOCAL_NETWORK" />
+
+    <application android:networkSecurityConfig="@xml/network_security_config" />
+</manifest>
