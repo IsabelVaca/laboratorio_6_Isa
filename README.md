@@ -17,4 +17,8 @@ https://drive.google.com/file/d/1QtIbIhNkY9KgS_A8FLEnzGPj-LIBg3Xy/view?usp=shari
 
 formato de la bitacora hecho con claude
 
+#PARTE 2
+
+La evidencia esta en una imagen api-parte2-evidencia y en los últimos commits
+
 
